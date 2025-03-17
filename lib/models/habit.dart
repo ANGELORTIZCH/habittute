@@ -11,7 +11,7 @@ class Habit {
   // habit name
   late String name;
   // completed day
-  List<DateTime> completeDays = [
+  List<DateTime> completedDays = [
     // DateTime( year, month, day)
     // DateTime( 2025, 1, 1)
     // DateTime( 2025, 1, 2)

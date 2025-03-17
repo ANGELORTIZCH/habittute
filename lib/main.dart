@@ -1,18 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:habittute/database/habit_database.dart';
 import 'package:habittute/pages/home_page.dart';
 import 'package:habittute/theme/theme_provider.dart';
 import 'package:provider/provider.dart';
 
-void main() {
-  /*WidgetsFlutterBinding.ensureInitialized();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   // initialize database
-  await HabitDatebase.initialize();
-  await HabitDatebase().saveFirstLaunchDate();*/
+  await HabitDatabase.initialize();
+  await HabitDatabase().saveFirstLanchDate();
 
-  runApp(ChangeNotifierProvider(
-    create: (context) => ThemeProvider(),
-    child: const MyApp(),
-  ));
+  runApp(
+    MultiProvider(
+      providers: [
+        // habit provider
+        ChangeNotifierProvider(create: (context) => HabitDatabase()),
+
+        // theme provider
+        ChangeNotifierProvider(create: (context) => ThemeProvider()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
